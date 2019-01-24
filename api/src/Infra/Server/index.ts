@@ -19,7 +19,7 @@ const server: http.Server = http.createServer(Server);
 // server listen
 server.listen({
   port,
-  host: 'localhost'
+  host
 });
 
 // server handlers
