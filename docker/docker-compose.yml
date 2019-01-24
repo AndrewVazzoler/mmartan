@@ -1,0 +1,24 @@
+version: '3.4'
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+volumes:
+  redis:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+  ### MongoDB ##############################################
+  mongodb:
+    image: mongo:latest
+    container_name: ${COMPOSE_PROJECT_NAME}_mongodb
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ${DATA_PATH_HOST}/mongo:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
